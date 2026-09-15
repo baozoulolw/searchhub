@@ -1,0 +1,16 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+
+# 运行时数据（含搜索源、代理、访问密钥哈希）
+backend/data/
+
+# 本地部署配置（含端口 / 管理密钥 / 各源 API Key）—— .env.example 保留提交
+.env
+*.env.local
+
+# 日志 / 系统杂项
+*.log
+.DS_Store
