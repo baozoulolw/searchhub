@@ -1,7 +1,7 @@
 /**
  * Browserbase Search 适配器（基于 Exa 导航索引）
- * 端口初稿：POST https://api.browserbase.com/v1/search/web  |  Bearer
- * ⚠️ 以实现时官方文档核对为准；若端点不符，仅此文件 URL 需调整。
+ * 官方：POST https://api.browserbase.com/v1/search，鉴权头 x-bb-api-key
+ * 响应：{ requestId, query, results: [{ id, url, title, ... }] }
  */
 import { SearchAdapter, SearchItem, AdapterContext } from '../types';
 import { requestJson, requireKey } from './_http';
@@ -19,10 +19,10 @@ export const browserbaseAdapter: SearchAdapter = {
     const { apiKey, numResults = 5 } = config || {};
     requireKey(apiKey, 'Browserbase');
 
-    const body = await requestJson('https://api.browserbase.com/v1/search/web', {
+    const body = await requestJson('https://api.browserbase.com/v1/search', {
       method: 'POST',
       dispatcher: ctx?.dispatcher,
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+      headers: { 'Content-Type': 'application/json', 'x-bb-api-key': apiKey as string },
       body: JSON.stringify({ query, numResults: Number(numResults) || 5 }),
     });
 
