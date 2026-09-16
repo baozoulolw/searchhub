@@ -50,6 +50,7 @@ export class ExternalController {
       sources,
       onlyTypes: normalizeArray(body?.onlyTypes),
       excludeTypes: normalizeArray(body?.excludeTypes),
+      channel: 'api',
     });
 
     if (!result.success) {

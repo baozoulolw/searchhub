@@ -21,6 +21,10 @@
         <el-icon><Search /></el-icon>
         <span>搜索</span>
       </el-menu-item>
+      <el-menu-item index="/stats">
+        <el-icon><DataAnalysis /></el-icon>
+        <span>总览看板</span>
+      </el-menu-item>
       <el-menu-item index="/sources">
         <el-icon><Setting /></el-icon>
         <span>搜索源管理</span>
@@ -55,6 +59,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const activeMenu = computed(() => {
+  if (route.path.startsWith('/stats')) return '/stats';
   if (route.path.startsWith('/sources')) return '/sources';
   if (route.path.startsWith('/proxies')) return '/proxies';
   if (route.path.startsWith('/keys')) return '/keys';

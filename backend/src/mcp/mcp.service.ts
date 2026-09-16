@@ -51,6 +51,7 @@ export class McpService {
           sources,
           onlyTypes: input?.onlyTypes,
           excludeTypes: input?.excludeTypes,
+          channel: 'mcp',
         });
         if (!result.success) {
           const failed = result as SearchFailure;

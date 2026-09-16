@@ -39,6 +39,7 @@ export class SearchController {
       sources,
       onlyTypes: normalizeArray(body?.onlyTypes),
       excludeTypes: normalizeArray(body?.excludeTypes),
+      channel: 'admin',
     });
 
     if (!result.success) {

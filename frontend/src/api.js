@@ -101,4 +101,25 @@ export const api = {
   deleteKey(id) {
     return request(`/api/keys/${id}`, { method: 'DELETE' });
   },
+
+  // 总览看板 / 调用统计
+  statsSummary() {
+    return request('/api/stats/summary');
+  },
+  statsEngines() {
+    return request('/api/stats/engines');
+  },
+  statsSeries(range = '24h') {
+    return request(`/api/stats/series?range=${encodeURIComponent(range)}`);
+  },
+  statsLogs(params) {
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(params || {})) {
+      if (v !== undefined && v !== null && v !== '') qs.set(k, v);
+    }
+    return request(`/api/stats/logs?${qs.toString()}`);
+  },
+  clearStats() {
+    return request('/api/stats', { method: 'DELETE' });
+  },
 };
